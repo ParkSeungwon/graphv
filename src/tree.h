@@ -19,6 +19,7 @@ public:
 		return height(this);
 	}
 	void view() {
+		height_ = height(this);
 		view(this);
 	}
 
@@ -28,6 +29,7 @@ protected:
 	Tree<T> *right = nullptr;
 
 private:
+	int height_;
 	void tfree(Tree<T>* p) {
 		if(!p) return;
 		tfree(p->left);
@@ -62,5 +64,4 @@ private:
 		return p;
 	}
 };
-
 

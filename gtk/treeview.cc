@@ -1,4 +1,6 @@
 #include<gtkmm.h>
+#include"treev.h"
+#include"src/tree.h"
 #include"treeview.h"
 using namespace std;
 
@@ -26,7 +28,16 @@ Win::Win()
 	sketch_.to_draws_.push_back(make_shared<Arrow>(a));
 	sketch_.to_draws_.push_back(make_shared<Box>(b));
 	sketch_.to_draws_.push_back(make_shared<Ellipse>(el));
-	set_default_size(300, 300);
+	set_default_size(900, 900);
+	Tree<int> t{2};
+	t.insert(1);
+	t.insert(3);
+	t.insert(5);
+	t.insert(0);
+	t.view();
+	TreeView<Tree<int>> tv{&t};
+	for(auto& a : tv) sketch_.to_draws_.push_back(a);
+	t.tfree();
 	show_all_children();
 }
 

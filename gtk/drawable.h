@@ -3,11 +3,8 @@
 #include<vector>
 #include<initializer_list>
 #include<string>
-
-namespace Cairo {
-	class Context;
-	template <typename T> class RefPtr<T>;
-};
+#include<sstream>
+#include<gtkmm.h>
 
 class Point : public std::complex<double>
 {
@@ -25,6 +22,11 @@ public:
 	void line_width(int w);
 	void set_rgb(double r, double g, double b);
 	void txt(std::string s);
+	template <typename T> void txt(T s) { 
+		std::stringstream ss;
+		ss << s;
+		txt_ = ss.str(); 
+	}
 	void set_size(int size);
 	void set_family(std::string family);
 	void set_weight(int weight);

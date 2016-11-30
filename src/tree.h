@@ -1,3 +1,4 @@
+#pragma once
 #include<cstdlib>
 #include<iostream>
 
@@ -15,38 +16,22 @@ public:
 		insert(this, n);
 	}
 
-	int height() {
-		return height(this);
-	}
 	void view() {
-		height_ = height(this);
 		view(this);
 	}
-
-protected:
-	T data;
 	Tree<T> *left = nullptr;
 	Tree<T> *right = nullptr;
+	T data;
+
+protected:
 
 private:
-	int height_;
 	void tfree(Tree<T>* p) {
 		if(!p) return;
 		tfree(p->left);
 		tfree(p->right);
 		free(p);
 	}	
-	int height(Tree<T>* p) {
-		static int max=0;
-		static int i = 1;
-		if(!p) return max = max > --i ? max : i;
-		i++;
-		height(p->left);
-		i++;
-		height(p->right);
-		i--;
-		return max;
-	}
 	void view(Tree<T>* p) {
 		if(!p) return;
 		view(p->left);
@@ -57,6 +42,8 @@ private:
 		if(!p) {
 			p = (Tree<T>*)malloc(sizeof(Tree<T>));
 			p->data = n;
+			p->left = nullptr;
+			p->right = nullptr;
 			return p;
 		}
 		if(n < p->data) p->left = insert(p->left, n);

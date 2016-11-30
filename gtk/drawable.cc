@@ -8,7 +8,6 @@ int Point::x() const {return real();}
 int Point::y() const {return imag();}
 void Drawable::set_rgb(double r, double g, double b) { r_ = r; g_ = g; b_ = b; } 
 void Drawable::line_width(int w) { line_width_ = w; }
-void Drawable::txt(string s) { txt_ = s; }
 void Drawable::operator()(const Cairo::RefPtr<Cairo::Context>& cr) 
 {
 	cr->save();

@@ -13,5 +13,6 @@ protected:
 	bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
 
 private:
+	void draw_txt(const Cairo::RefPtr<Cairo::Context>& cr, int w, int h);
 };
 

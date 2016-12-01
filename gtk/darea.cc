@@ -3,7 +3,7 @@ using namespace std;
 
 SketchBook::SketchBook()
 {
-	set_size_request(500, 500);
+	set_size_request(3000, 1000);
 }
 
 bool SketchBook::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) 

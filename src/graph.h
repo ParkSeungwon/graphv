@@ -1,5 +1,3 @@
-#include<cstdlib>
-#include<cassert>
 typedef int element;
 
 typedef struct Edge
@@ -16,34 +14,7 @@ typedef struct Vertex
 	struct Vertex* vertex;
 } Vertex;
 
-Vertex* insert_vertex(Vertex* p, element data)
-{
-	if(!p) {
-		p = (Vertex*)malloc(sizeof(Vertex));
-		p->data = data;
-		p->edge = nullptr;
-		p->vertex = nullptr;
-		return p;
-	}
-
-	p->vertex = insert_vertex(p->vertex, data);
-	return p;
-}
-
-Edge* insert_edge(Vertex* p, Vertex* q, int w)
-{
-	assert(p);
-	Edge* prev = p;
-	for(Edge* e = p->edge; e; e = e->edge) prev = e;
-	prev->edge = (Edge*)malloc(sizeof(Edge));
-	prev->edge->weight = w;
-	prev->edge->edge = nullptr;
-	prev->edge->vertex = q;
-}
-
-
-template <typename T> class Graph 
-{
-public:
-	insert_vertex();
-	insert_edge();
+Vertex* insert_vertex(Vertex* p, element data);
+Edge* insert_edge(Edge* e, Vertex* q, int w);
+void ins_edge(Vertex* p, element a, element b, int w);
+void show(Vertex* p);

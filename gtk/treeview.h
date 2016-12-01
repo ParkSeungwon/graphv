@@ -6,6 +6,7 @@ class Win : public Gtk::Window
 {
 public:
 	Win();
+	void draw(std::shared_ptr<Drawable> to_draw);
 
 protected:
 	Gtk::ScrolledWindow scwin_;
@@ -14,9 +15,7 @@ protected:
 template <typename T> void treeview(T* p) 
 {
 	if(!p) return;
-
 	treeview(p->left);
 	treeview(p->right);
-	if(!p) return;
 }
 

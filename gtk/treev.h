@@ -2,12 +2,13 @@
 #include<iostream>
 #include<memory>
 #include"drawable.h"
+#define TXT_SIZE 30
 template <typename T> class TreeView
 {
 public:
 	TreeView(T* tree) {
 		level_ = height(tree);
-		width_ = pow(2, level_) * 20;
+		width_ = pow(2, level_) * TXT_SIZE;
 		height_ = level_ * 150;
 		generate_graph(tree, width_ / 2, 100);
 	}

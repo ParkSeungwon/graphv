@@ -13,11 +13,13 @@ void Drawable::operator()(const Cairo::RefPtr<Cairo::Context>& cr)
 	cr->save();
 	Point p{(start_ + end_) / 2.0};
 	if(txt_ != "") {
-		cr->move_to(p.x(), p.y());
 		cr->set_source_rgb(r_, g_, b_);
 		auto layout = Pango::Layout::create(cr);
 		layout->set_font_description(font_);
 		layout->set_text(txt_);
+		int text_width, text_height;
+		layout->get_pixel_size(text_width, text_height);
+		cr->move_to(p.x() - text_width / 2, p.y() - text_height / 2);
 		layout->show_in_cairo_context(cr);
 	}
 	cr->restore();

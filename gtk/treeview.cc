@@ -35,10 +35,6 @@ Win::Win()
 	random_device rd;
 	Tree<int> t{10};
 	for(int i=0; i<15; i++) t.insert(di(rd));
-	t.insert(1);
-	t.insert(3);
-	t.insert(5);
-	t.insert(0);
 	t.view();
 	TreeView<Tree<int>> tv{&t};
 	for(auto& a : tv) sketch_.to_draws_.push_back(a);

@@ -1,10 +1,12 @@
 #include<gtkmm.h>
 #include"treeview.h"
 #include"treev.h"
+#include"graphv.h"
 #include"src/tree.h"
+#include"src/graph.h"
 using namespace std;
 
-int main(int c, char** v)
+int main(int c, char** av)
 {
 	uniform_int_distribution<> di(0, 20);
 	random_device rd;
@@ -12,9 +14,9 @@ int main(int c, char** v)
 	for(int i=0; i<15; i++) t.insert(di(rd));
 	TreeView<Tree<int>> tv{&t};
 
-	auto app = Gtk::Application::create(c, v);
+	auto app = Gtk::Application::create(c, av);
 	Win win;
-	for(auto& a : tv) win.draw(a);
+//	for(auto& a : tv) win.draw(a);
 
 	Line l{{10, 100}, {20, 10}, {30,100}, {300, 200}};
 	l.set_rgb(1,0,0);
@@ -36,8 +38,19 @@ int main(int c, char** v)
 	win.draw(make_shared<Arrow>(a));
 	win.draw(make_shared<Box>(b));
 	win.draw(make_shared<Ellipse>(el));
+	t.tfree(); 
 
-	t.tfree();
+	Vertex* v = NULL;
+	v = insert_vertex(v, 3);
+	v = insert_vertex(v, 4);
+	v = insert_vertex(v, 5);
+	v = insert_vertex(v, 6);
+	ins_edge(v, 3, 4, 1);
+	ins_edge(v, 3, 5, 1);
+	ins_edge(v, 3, 6, 3);
+	ins_edge(v, 4, 5, 1);
+	GraphView<Vertex, Edge, int> gv{v};
+	for(auto& a : gv) win.draw(a);
 	return app->run(win);
 }
 

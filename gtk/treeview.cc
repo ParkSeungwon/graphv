@@ -18,3 +18,15 @@ void Win::draw(shared_ptr<Drawable> dr)
 	sketch_.to_draws_.push_back(dr);
 }
 
+SketchBook::SketchBook()
+{
+	set_size_request(3000, 1000);
+}
+
+bool SketchBook::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) 
+{
+	cr->save();
+	for(auto& a : to_draws_) (*a)(cr);
+	cr->restore();
+	return true;
+}

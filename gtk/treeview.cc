@@ -1,7 +1,5 @@
 #include<gtkmm.h>
-#include<random>
-#include"treev.h"
-#include"src/tree.h"
+#include"drawable.h"
 #include"treeview.h"
 using namespace std;
 

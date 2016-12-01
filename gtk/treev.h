@@ -1,5 +1,4 @@
 #pragma once
-#include<iostream>
 #include<memory>
 #include"drawable.h"
 #define TXT_SIZE 30

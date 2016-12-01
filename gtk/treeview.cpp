@@ -49,8 +49,10 @@ int main(int c, char** av)
 	ins_edge(v, 3, 5, 1);
 	ins_edge(v, 3, 6, 3);
 	ins_edge(v, 4, 5, 1);
-	GraphView<Vertex, Edge, int> gv{v};
+	GraphView<Vertex, Edge, element> gv{v};
 	for(auto& a : gv) win.draw(a);
+	gshow(v);
+	gfree(v);
 	return app->run(win);
 }
 

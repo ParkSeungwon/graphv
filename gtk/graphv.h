@@ -16,6 +16,17 @@ public:
 		}
 		generate_graph();
 	}
+	void drag(Point f, Point t) {
+		drawables_.clear();
+		for(auto& a : map_) {
+			if(abs(a.second - f) < 20) {
+				a.second = t;
+				break;
+			}
+		}
+		generate_graph();
+	}
+
 	std::vector<std::shared_ptr<Drawable>>::const_iterator begin() const {
 		return drawables_.begin();
 	}

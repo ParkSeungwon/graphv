@@ -45,16 +45,18 @@ void ins_edge(Vertex* p, element a, element b, int w)
 
 void gshow(Vertex* p) {
 	if(!p) return;
-	printf("\n%d : ", p->data);
+	printf("%d : ", p->data);
 	for(Edge* e = p->edge; e; e = e->edge) 
 		printf("<%d %d>%d ", p->data, e->vertex->data, e->weight);
+	printf("\n");
 	gshow(p->vertex);
 }
 void vgshow(Vertex* p) {
 	if(!p) return;
-	printf("\n%d : ", p->data);
+	printf("%d : ", p->data);
 	for(Edge* e = p->edge; e; e = e->edge) 
 		if(e->v) printf("<%d %d>%d ", p->data, e->vertex->data, e->weight);
+	printf("\n");
 	vgshow(p->vertex);
 }
 
@@ -89,8 +91,37 @@ void shortest(Vertex* p) {
 	me->vertex->v = 1;
 }
 
-void min_span(Vertex* p) {
+void prim(Vertex* p) {
 	p->v = 1;
 	for(Vertex* q = p->vertex; q; q = q->vertex) shortest(p);//just to call n-1
 }
 
+void krus(Vertex* p) {
+	Edge* me;
+	Vertex* mv;
+	int min = 1000000;
+	for(Vertex* q = p; q; q = q->vertex) {
+		for(Edge* e = q->edge; e; e = e->edge) {
+			if(e->weight < min && !(q->v && e->vertex->v)) {//this is not correct
+				min = e->weight;
+				me = e;
+				mv = q;
+			}
+		}
+	}
+	mv->v = 1;
+	me->v = 1;
+	me->vertex->v = 1;
+}
+
+void krusgal(Vertex* p) {
+	for(Vertex* q = p; q; q = q->vertex) krus(p);//just to call n times
+	krus(p);
+}
+
+void clearv(Vertex* p) {
+	for(Vertex* q = p; q; q = q->vertex) {
+		q->v = 0;
+		for(Edge* e = q->edge; e; e = e->edge) e->v = 0;
+	}
+}

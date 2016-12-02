@@ -22,4 +22,6 @@ void ins_edge(Vertex* p, element a, element b, int w);
 void gshow(Vertex* p);
 void vgshow(Vertex* p);
 void gfree(Vertex* p);
-void min_span(Vertex* p);
+void prim(Vertex* p);
+void krusgal(Vertex* p);
+void clearv(Vertex* p);

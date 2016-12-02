@@ -6,6 +6,7 @@
 #include"src/graph.h"
 using namespace std;
 
+extern GraphView<Vertex, Edge, element>* pgv;
 int main(int c, char** av)
 {
 	uniform_int_distribution<> di(0, 20);
@@ -46,10 +47,12 @@ int main(int c, char** av)
 	v = insert_vertex(v, 5);
 	v = insert_vertex(v, 6);
 	ins_edge(v, 3, 4, 1);
+	ins_edge(v, 4, 3, 1);
 	ins_edge(v, 3, 5, 1);
 	ins_edge(v, 3, 6, 3);
 	ins_edge(v, 4, 5, 1);
 	GraphView<Vertex, Edge, element> gv{v};
+	pgv = &gv;
 	for(auto& a : gv) win.draw(a);
 	gshow(v);
 	gfree(v);

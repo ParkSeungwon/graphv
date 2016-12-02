@@ -38,8 +38,11 @@ int main()
 	ins_edge(v, 5, 3, 9);
 	ins_edge(v, 3, 6, 4);
 	ins_edge(v, 6, 3, 4);
-	min_span(v);
 	gshow(v);
+	prim(v);
+	vgshow(v);
+	clearv(v);
+	krusgal(v);
 	vgshow(v);
 	gfree(v);
 }

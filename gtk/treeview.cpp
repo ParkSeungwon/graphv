@@ -70,9 +70,9 @@ int main(int c, char** av)
 	gshow(v);
 	prim(v);
 	vgshow(v);
-	clearv(v);
-	krusgal(v);
-	vgshow(v);
+//	clearv(v);
+//	krusgal(v);
+//	vgshow(v);
 	GraphView<Vertex, Edge, element> gv{v};
 	pgv = &gv;
 	for(auto& a : gv) win.draw(a);

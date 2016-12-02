@@ -13,7 +13,7 @@ void Drawable::operator()(const Cairo::RefPtr<Cairo::Context>& cr)
 	cr->save();
 	Point p{(start_ + end_) / 2.0};
 	if(txt_ != "") {
-		cr->set_source_rgb(r_, g_, b_);
+		cr->set_source_rgba(r_, g_, b_, 0.5);
 		auto layout = Pango::Layout::create(cr);
 		layout->set_font_description(font_);
 		layout->set_text(txt_);
@@ -49,7 +49,7 @@ void Line::operator()(const Cairo::RefPtr<Cairo::Context>& cr)
 {
 	Drawable::operator()(cr);
 	cr->save();
-	cr->set_source_rgb(r_, g_, b_);
+	cr->set_source_rgba(r_, g_, b_, 0.5);
 	cr->set_line_width(line_width_);
 	cr->move_to(points_[0].x(), points_[0].y());
 	for(auto& a : points_) cr->line_to(a.x(), a.y());
@@ -106,7 +106,7 @@ void Ellipse::operator()(const Cairo::RefPtr<Cairo::Context>& cr)
 	int w = abs(start_.x() - end_.x());
 	int h = abs(start_.y() - end_.y());
 	cr->save();
-	cr->set_source_rgb(r_, g_, b_);
+	cr->set_source_rgba(r_, g_, b_, 0.5);
 	cr->set_line_width(line_width_);
 	cr->begin_new_sub_path();//to avoid trailing line
 	cr->translate(c.x(), c.y());

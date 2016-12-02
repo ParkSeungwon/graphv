@@ -12,7 +12,7 @@ public:
 		for(V* p = gr; p; p = p->vertex) {
 			map_[p->data] = im + std::polar(200.0, M_PI * 2 * i++ / sz);
 			for(E* q = p->edge; q; q = q->edge) 
-				arrows_.push_back(std::make_tuple(p->data, q->vertex->data, q->weight));
+				arrows_.push_back(std::make_tuple(p->data, q->vertex->data, q->weight, q->v));
 		}
 		generate_graph();
 	}
@@ -37,7 +37,7 @@ public:
 
 protected:
 	std::map<D, Point> map_;
-	std::vector<std::tuple<D, D, int>> arrows_;
+	std::vector<std::tuple<D, D, int, int>> arrows_;
 	std::vector<std::shared_ptr<Drawable>> drawables_;
 
 private:
@@ -50,6 +50,7 @@ private:
 			d2 -= d3;
 			Arrow arrow{d1, d2, 1};
 			arrow.txt(std::get<2>(a));
+			if(std::get<3>(a)) arrow.set_rgb(0,1,0);
 			drawables_.push_back(std::make_shared<Arrow>(arrow));
 		}
 		for(auto& a : map_) {

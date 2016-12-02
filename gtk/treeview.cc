@@ -43,19 +43,19 @@ void SketchBook::refresh()
     }
 }
 
-bool Win::on_button_press_event(GdkEventButton* e)
+bool SketchBook::on_button_press_event(GdkEventButton* e)
 {
 	x = e->x;
 	y = e->y;
 }
 
-bool Win::on_button_release_event(GdkEventButton* e)
+bool SketchBook::on_button_release_event(GdkEventButton* e)
 {
 	tx = e->x;
 	ty = e->y;
 	pgv->drag({x, y}, {tx, ty});
-	sketch_.to_draws_.clear();
-	for(auto& a : *pgv) draw(a);
-	sketch_.refresh();	
+	to_draws_.clear();
+	for(auto& a : *pgv) to_draws_.push_back(a);
+	refresh();	
 }
 

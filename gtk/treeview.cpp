@@ -1,3 +1,4 @@
+#include<random>
 #include<gtkmm.h>
 #include"treeview.h"
 #include"treev.h"
